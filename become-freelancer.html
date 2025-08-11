@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FreelancePro</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/becomefreelancer.css">
+</head>
+
+<body>
+  <nav>
+    <div class="nav-container">
+      <a href="index.html" class="logo" data-i18n="logo"><img src="img/logo.png" class="logo-icon"
+          alt="FreelancePro Logo"><span class="logo-text">FreelancePro</span></a>
+      <div class="nav-links">
+        <a href="#projects" data-i18n="projects">Projects</a>
+        <a href="#freelancers" data-i18n="freelancers">Freelancers</a>
+        <a href="#how-it-works" data-i18n="howItWorks">How It Works</a>
+
+      </div>
+      <div class="theme-lang-toggle desktop-only">
+        <a class="login-btn" onclick="openModal()" data-i18n="login">Log In</a>
+        <div class="theme-switch">
+          <input type="checkbox" id="theme-toggle-desktop" onchange="toggleTheme()">
+          <label for="theme-toggle-desktop" class="slider"></label>
+        </div>
+        <button class="lang-toggle" onclick="toggleLangMenu()">🌐</button>
+        <div class="lang-menu">
+          <button onclick="changeLanguage('uk')"><span>🇺🇦</span> УКР</button>
+          <button onclick="changeLanguage('ru')"><span>🇷🇺</span> РУС</button>
+          <button onclick="changeLanguage('en')"><span>🇬🇧</span> ENG</button>
+        </div>
+      </div>
+      <button class="burger-menu" onclick="toggleNav()">☰</button>
+    </div>
+  </nav>
+
+  <!-- Модальне вікно -->
+  <div class="modal" id="authModal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <div class="modal-tabs">
+        <div class="modal-tab active" onclick="showTab('login')" data-i18n="loginModalTitle">Login</div>
+        <div class="modal-tab" onclick="showTab('register')" data-i18n="registerModalTitle">Register</div>
+      </div>
+      <div class="modal-tab-content active" id="login">
+        <input type="tel" placeholder="Phone Number" data-i18n-placeholder="phonePlaceholder">
+        <input type="password" placeholder="Password" data-i18n-placeholder="passwordPlaceholder">
+        <button onclick="handleLogin()" data-i18n="loginButton">Log In</button>
+      </div>
+      <div class="modal-tab-content" id="register">
+        <input type="text" placeholder="Username" data-i18n-placeholder="usernamePlaceholder">
+        <input type="tel" placeholder="Phone Number" data-i18n-placeholder="phonePlaceholder">
+        <select data-i18n-placeholder="genderPlaceholder">
+          <option value="" disabled selected>Вкажіть стать</option>
+          <option value="male">Чоловік</option>
+          <option value="female">Жінка</option>
+          <option value="other">Інше</option>
+        </select>
+        <select data-i18n-placeholder="countryPlaceholder">
+          <option value="" disabled selected>Виберіть країну</option>
+          <option value="af">Афганістан</option>
+          <option value="al">Албанія</option>
+          <option value="dz">Алжир</option>
+          <option value="as">Американське Самоа</option>
+          <option value="ad">Андорра</option>
+          <option value="ao">Ангола</option>
+          <option value="ai">Ангуїлла</option>
+          <option value="aq">Антарктида</option>
+          <option value="ag">Антигуа і Барбуда</option>
+          <option value="ar">Аргентина</option>
+          <option value="am">Вірменія</option>
+          <option value="aw">Аруба</option>
+          <option value="au">Австралія</option>
+          <option value="at">Австрія</option>
+          <option value="az">Азербайджан</option>
+          <option value="bs">Багамські Острови</option>
+          <option value="bh">Бахрейн</option>
+          <option value="bd">Бангладеш</option>
+          <option value="bb">Барбадос</option>
+          <option value="by">Білорусь</option>
+          <option value="be">Бельгія</option>
+          <option value="bz">Беліз</option>
+          <option value="bj">Бенін</option>
+          <option value="bm">Бермудські Острови</option>
+          <option value="bt">Бутан</option>
+          <option value="bo">Болівія</option>
+          <option value="ba">Боснія і Герцеговина</option>
+          <option value="bw">Ботсвана</option>
+          <option value="bv">Острів Буве</option>
+          <option value="br">Бразилія</option>
+          <option value="io">Британська Територія в Індійському Океані</option>
+          <option value="bn">Бруней</option>
+          <option value="bg">Болгарія</option>
+          <option value="bf">Буркіна-Фасо</option>
+          <option value="bi">Бурунді</option>
+          <option value="kh">Камбоджа</option>
+          <option value="cm">Камерун</option>
+          <option value="ca">Канада</option>
+          <option value="cv">Кабо-Верде</option>
+          <option value="ky">Кайманові Острови</option>
+          <option value="cf">Центральноафриканська Республіка</option>
+          <option value="td">Чад</option>
+          <option value="cl">Чилі</option>
+          <option value="cn">Китай</option>
+          <option value="cx">Острів Різдва</option>
+          <option value="cc">Кокосові (Кілінг) Острови</option>
+          <option value="co">Колумбія</option>
+          <option value="km">Комори</option>
+          <option value="cg">Конго</option>
+          <option value="cd">Демократична Республіка Конго</option>
+          <option value="ck">Острови Кука</option>
+          <option value="cr">Коста-Рика</option>
+          <option value="ci">Кот-д'Івуар</option>
+          <option value="hr">Хорватія</option>
+          <option value="cu">Куба</option>
+          <option value="cy">Кіпр</option>
+          <option value="cz">Чехія</option>
+          <option value="dk">Данія</option>
+          <option value="dj">Джибуті</option>
+          <option value="dm">Домініка</option>
+          <option value="do">Домініканська Республіка</option>
+          <option value="ec">Еквадор</option>
+          <option value="eg">Єгипет</option>
+          <option value="sv">Сальвадор</option>
+          <option value="gq">Екваторіальна Гвінея</option>
+          <option value="er">Еритрея</option>
+          <option value="ee">Естонія</option>
+          <option value="et">Ефіопія</option>
+          <option value="fk">Фолклендські Острови</option>
+          <option value="fo">Фарерські Острови</option>
+          <option value="fj">Фіджі</option>
+          <option value="fi">Фінляндія</option>
+          <option value="fr">Франція</option>
+          <option value="gf">Французька Гвіана</option>
+          <option value="pf">Французька Полінезія</option>
+          <option value="tf">Французькі Південні Території</option>
+          <option value="ga">Габон</option>
+          <option value="gm">Гамбія</option>
+          <option value="ge">Грузія</option>
+          <option value="de">Німеччина</option>
+          <option value="gh">Гана</option>
+          <option value="gi">Гібралтар</option>
+          <option value="gr">Греція</option>
+          <option value="gl">Гренландія</option>
+          <option value="gd">Гренада</option>
+          <option value="gp">Гваделупа</option>
+          <option value="gu">Гуам</option>
+          <option value="gt">Гватемала</option>
+          <option value="gg">Гернсі</option>
+          <option value="gn">Гвінея</option>
+          <option value="gw">Гвінея-Бісау</option>
+          <option value="gy">Гайана</option>
+          <option value="ht">Гаїті</option>
+          <option value="hm">Острови Херд і Макдональд</option>
+          <option value="va">Ватикан</option>
+          <option value="hn">Гондурас</option>
+          <option value="hk">Гонконг</option>
+          <option value="hu">Угорщина</option>
+          <option value="is">Ісландія</option>
+          <option value="in">Індія</option>
+          <option value="id">Індонезія</option>
+          <option value="ir">Іран</option>
+          <option value="iq">Ірак</option>
+          <option value="ie">Ірландія</option>
+          <option value="im">Острів Мен</option>
+          <option value="il">Ізраїль</option>
+          <option value="it">Італія</option>
+          <option value="jm">Ямайка</option>
+          <option value="jp">Японія</option>
+          <option value="je">Джерсі</option>
+          <option value="jo">Йорданія</option>
+          <option value="kz">Казахстан</option>
+          <option value="ke">Кенія</option>
+          <option value="ki">Кірибаті</option>
+          <option value="kp">Північна Корея</option>
+          <option value="kr">Південна Корея</option>
+          <option value="kw">Кувейт</option>
+          <option value="kg">Киргизстан</option>
+          <option value="la">Лаос</option>
+          <option value="lv">Латвія</option>
+          <option value="lb">Ліван</option>
+          <option value="ls">Лесото</option>
+          <option value="lr">Ліберія</option>
+          <option value="ly">Лівія</option>
+          <option value="li">Ліхтенштейн</option>
+          <option value="lt">Литва</option>
+          <option value="lu">Люксембург</option>
+          <option value="mo">Макао</option>
+          <option value="mk">Північна Македонія</option>
+          <option value="mg">Мадагаскар</option>
+          <option value="mw">Малаві</option>
+          <option value="my">Малайзія</option>
+          <option value="mv">Мальдіви</option>
+          <option value="ml">Малі</option>
+          <option value="mt">Мальта</option>
+          <option value="mh">Маршаллові Острови</option>
+          <option value="mq">Мартиніка</option>
+          <option value="mr">Мавританія</option>
+          <option value="mu">Маврикій</option>
+          <option value="yt">Майотта</option>
+          <option value="mx">Мексика</option>
+          <option value="fm">Мікронезія</option>
+          <option value="md">Молдова</option>
+          <option value="mc">Монако</option>
+          <option value="mn">Монголія</option>
+          <option value="me">Чорногорія</option>
+          <option value="ms">Монтсеррат</option>
+          <option value="ma">Марокко</option>
+          <option value="mz">Мозамбік</option>
+          <option value="mm">М’янма</option>
+          <option value="na">Намібія</option>
+          <option value="nr">Науру</option>
+          <option value="np">Непал</option>
+          <option value="nl">Нідерланди</option>
+          <option value="nc">Нова Каледонія</option>
+          <option value="nz">Нова Зеландія</option>
+          <option value="ni">Нікарагуа</option>
+          <option value="ne">Нігер</option>
+          <option value="ng">Нігерія</option>
+          <option value="nu">Ніуе</option>
+          <option value="nf">Острів Норфолк</option>
+          <option value="mp">Північні Маріанські Острови</option>
+          <option value="no">Норвегія</option>
+          <option value="om">Оман</option>
+          <option value="pk">Пакистан</option>
+          <option value="pw">Палау</option>
+          <option value="ps">Палестина</option>
+          <option value="pa">Панама</option>
+          <option value="pg">Папуа-Нова Гвінея</option>
+          <option value="py">Парагвай</option>
+          <option value="pe">Перу</option>
+          <option value="ph">Філіппіни</option>
+          <option value="pn">Піткерн</option>
+          <option value="pl">Польща</option>
+          <option value="pt">Португалія</option>
+          <option value="pr">Пуерто-Рико</option>
+          <option value="qa">Катар</option>
+          <option value="re">Реюньйон</option>
+          <option value="ro">Румунія</option>
+          <option value="ru">Росія</option>
+          <option value="rw">Руанда</option>
+          <option value="bl">Сен-Бартельмі</option>
+          <option value="sh">Острів Святої Єлени</option>
+          <option value="kn">Сент-Кітс і Невіс</option>
+          <option value="lc">Сент-Люсія</option>
+          <option value="mf">Сен-Мартен</option>
+          <option value="pm">Сен-П’єр і Мікелон</option>
+          <option value="vc">Сент-Вінсент і Гренадіни</option>
+          <option value="ws">Самоа</option>
+          <option value="sm">Сан-Марино</option>
+          <option value="st">Сан-Томе і Принсіпі</option>
+          <option value="sa">Саудівська Аравія</option>
+          <option value="sn">Сенегал</option>
+          <option value="rs">Сербія</option>
+          <option value="sc">Сейшели</option>
+          <option value="sl">Сьєрра-Леоне</option>
+          <option value="sg">Сінгапур</option>
+          <option value="sx">Сінт-Мартен</option>
+          <option value="sk">Словаччина</option>
+          <option value="si">Словенія</option>
+          <option value="sb">Соломонові Острови</option>
+          <option value="so">Сомалі</option>
+          <option value="za">Південна Африка</option>
+          <option value="gs">Південна Джорджія та Південні Сандвічеві Острови</option>
+          <option value="ss">Південний Судан</option>
+          <option value="es">Іспанія</option>
+          <option value="lk">Шрі-Ланка</option>
+          <option value="sd">Судан</option>
+          <option value="sr">Сурінам</option>
+          <option value="sj">Шпіцберген і Ян-Майен</option>
+          <option value="sz">Есватіні</option>
+          <option value="se">Швеція</option>
+          <option value="ch">Швейцарія</option>
+          <option value="sy">Сирія</option>
+          <option value="tw">Тайвань</option>
+          <option value="tj">Таджикистан</option>
+          <option value="tz">Танзанія</option>
+          <option value="th">Таїланд</option>
+          <option value="tl">Тимор-Лешті</option>
+          <option value="tg">Того</option>
+          <option value="tk">Токелау</option>
+          <option value="to">Тонга</option>
+          <option value="tt">Тринідад і Тобаго</option>
+          <option value="tn">Туніс</option>
+          <option value="tr">Туреччина</option>
+          <option value="tm">Туркменістан</option>
+          <option value="tc">Туркс і Кайкос</option>
+          <option value="tv">Тувалу</option>
+          <option value="ug">Уганда</option>
+          <option value="ua">Україна</option>
+          <option value="ae">Об'єднані Арабські Емірати</option>
+          <option value="gb">Велика Британія</option>
+          <option value="us">США</option>
+          <option value="uy">Уругвай</option>
+          <option value="uz">Узбекистан</option>
+          <option value="vu">Вануату</option>
+          <option value="ve">Венесуела</option>
+          <option value="vn">В’єтнам</option>
+          <option value="vg">Британські Віргінські Острови</option>
+          <option value="vi">Американські Віргінські Острови</option>
+          <option value="wf">Волліс і Футуна</option>
+          <option value="eh">Західна Сахара</option>
+          <option value="ye">Ємен</option>
+          <option value="zm">Замбія</option>
+          <option value="zw">Зімбабве</option>
+        </select>
+        <input type="password" placeholder="Password" data-i18n-placeholder="passwordPlaceholder">
+        <input type="password" placeholder="Repeat Password" data-i18n-placeholder="repeatPasswordPlaceholder">
+        <button onclick="handleRegister()" data-i18n="registerButton">Register</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="main-content">
+    <h1 data-i18n="becomeFreelancerTitle">Become a Freelancer</h1>
+    <p data-i18n="becomeFreelancerDescription">Join our platform by filling out the form below to start your freelance
+      journey!</p>
+    <div class="tab-buttons">
+      <button class="tab-button active" onclick="showTab('application')" data-i18n="applicationTab">Application</button>
+      <button class="tab-button" onclick="showTab('register')" data-i18n="registerTab">Register</button>
+    </div>
+    <div id="application" class="tab-content active">
+      <form id="freelancerForm" onsubmit="handleSubmit(event)">
+        <div class="form-group">
+          <label for="freelancerName" data-i18n="nameLabel">Full Name</label>
+          <input type="text" id="freelancerName" name="freelancerName" required>
+        </div>
+        <div class="form-group">
+          <label for="freelancerPhone" data-i18n="phoneLabel">Phone Number</label>
+          <input type="tel" id="freelancerPhone" name="freelancerPhone" required>
+        </div>
+        <div class="form-group">
+          <label for="freelancerCountry" data-i18n="countryLabel">Country</label>
+          <select id="freelancerCountry" name="freelancerCountry" required>
+            <option value="" disabled selected data-i18n="selectCountry">Select Country</option>
+            <option value="af">Афганістан</option>
+            <option value="al">Албанія</option>
+            <option value="dz">Алжир</option>
+            <option value="as">Американське Самоа</option>
+            <option value="ad">Андорра</option>
+            <option value="ao">Ангола</option>
+            <option value="ai">Ангуїлла</option>
+            <option value="aq">Антарктида</option>
+            <option value="ag">Антигуа і Барбуда</option>
+            <option value="ar">Аргентина</option>
+            <option value="am">Вірменія</option>
+            <option value="aw">Аруба</option>
+            <option value="au">Австралія</option>
+            <option value="at">Австрія</option>
+            <option value="az">Азербайджан</option>
+            <option value="bs">Багамські Острови</option>
+            <option value="bh">Бахрейн</option>
+            <option value="bd">Бангладеш</option>
+            <option value="bb">Барбадос</option>
+            <option value="by">Білорусь</option>
+            <option value="be">Бельгія</option>
+            <option value="bz">Беліз</option>
+            <option value="bj">Бенін</option>
+            <option value="bm">Бермудські Острови</option>
+            <option value="bt">Бутан</option>
+            <option value="bo">Болівія</option>
+            <option value="ba">Боснія і Герцеговина</option>
+            <option value="bw">Ботсвана</option>
+            <option value="bv">Острів Буве</option>
+            <option value="br">Бразилія</option>
+            <option value="io">Британська Територія в Індійському Океані</option>
+            <option value="bn">Бруней</option>
+            <option value="bg">Болгарія</option>
+            <option value="bf">Буркіна-Фасо</option>
+            <option value="bi">Бурунді</option>
+            <option value="kh">Камбоджа</option>
+            <option value="cm">Камерун</option>
+            <option value="ca">Канада</option>
+            <option value="cv">Кабо-Верде</option>
+            <option value="ky">Кайманові Острови</option>
+            <option value="cf">Центральноафриканська Республіка</option>
+            <option value="td">Чад</option>
+            <option value="cl">Чилі</option>
+            <option value="cn">Китай</option>
+            <option value="cx">Острів Різдва</option>
+            <option value="cc">Кокосові (Кілінг) Острови</option>
+            <option value="co">Колумбія</option>
+            <option value="km">Комори</option>
+            <option value="cg">Конго</option>
+            <option value="cd">Демократична Республіка Конго</option>
+            <option value="ck">Острови Кука</option>
+            <option value="cr">Коста-Рика</option>
+            <option value="ci">Кот-д'Івуар</option>
+            <option value="hr">Хорватія</option>
+            <option value="cu">Куба</option>
+            <option value="cy">Кіпр</option>
+            <option value="cz">Чехія</option>
+            <option value="dk">Данія</option>
+            <option value="dj">Джибуті</option>
+            <option value="dm">Домініка</option>
+            <option value="do">Домініканська Республіка</option>
+            <option value="ec">Еквадор</option>
+            <option value="eg">Єгипет</option>
+            <option value="sv">Сальвадор</option>
+            <option value="gq">Екваторіальна Гвінея</option>
+            <option value="er">Еритрея</option>
+            <option value="ee">Естонія</option>
+            <option value="et">Ефіопія</option>
+            <option value="fk">Фолклендські Острови</option>
+            <option value="fo">Фарерські Острови</option>
+            <option value="fj">Фіджі</option>
+            <option value="fi">Фінляндія</option>
+            <option value="fr">Франція</option>
+            <option value="gf">Французька Гвіана</option>
+            <option value="pf">Французька Полінезія</option>
+            <option value="tf">Французькі Південні Території</option>
+            <option value="ga">Габон</option>
+            <option value="gm">Гамбія</option>
+            <option value="ge">Грузія</option>
+            <option value="de">Німеччина</option>
+            <option value="gh">Гана</option>
+            <option value="gi">Гібралтар</option>
+            <option value="gr">Греція</option>
+            <option value="gl">Гренландія</option>
+            <option value="gd">Гренада</option>
+            <option value="gp">Гваделупа</option>
+            <option value="gu">Гуам</option>
+            <option value="gt">Гватемала</option>
+            <option value="gg">Гернсі</option>
+            <option value="gn">Гвінея</option>
+            <option value="gw">Гвінея-Бісау</option>
+            <option value="gy">Гайана</option>
+            <option value="ht">Гаїті</option>
+            <option value="hm">Острови Херд і Макдональд</option>
+            <option value="va">Ватикан</option>
+            <option value="hn">Гондурас</option>
+            <option value="hk">Гонконг</option>
+            <option value="hu">Угорщина</option>
+            <option value="is">Ісландія</option>
+            <option value="in">Індія</option>
+            <option value="id">Індонезія</option>
+            <option value="ir">Іран</option>
+            <option value="iq">Ірак</option>
+            <option value="ie">Ірландія</option>
+            <option value="im">Острів Мен</option>
+            <option value="il">Ізраїль</option>
+            <option value="it">Італія</option>
+            <option value="jm">Ямайка</option>
+            <option value="jp">Японія</option>
+            <option value="je">Джерсі</option>
+            <option value="jo">Йорданія</option>
+            <option value="kz">Казахстан</option>
+            <option value="ke">Кенія</option>
+            <option value="ki">Кірибаті</option>
+            <option value="kp">Північна Корея</option>
+            <option value="kr">Південна Корея</option>
+            <option value="kw">Кувейт</option>
+            <option value="kg">Киргизстан</option>
+            <option value="la">Лаос</option>
+            <option value="lv">Латвія</option>
+            <option value="lb">Ліван</option>
+            <option value="ls">Лесото</option>
+            <option value="lr">Ліберія</option>
+            <option value="ly">Лівія</option>
+            <option value="li">Ліхтенштейн</option>
+            <option value="lt">Литва</option>
+            <option value="lu">Люксембург</option>
+            <option value="mo">Макао</option>
+            <option value="mk">Північна Македонія</option>
+            <option value="mg">Мадагаскар</option>
+            <option value="mw">Малаві</option>
+            <option value="my">Малайзія</option>
+            <option value="mv">Мальдіви</option>
+            <option value="ml">Малі</option>
+            <option value="mt">Мальта</option>
+            <option value="mh">Маршаллові Острови</option>
+            <option value="mq">Мартиніка</option>
+            <option value="mr">Мавританія</option>
+            <option value="mu">Маврикій</option>
+            <option value="yt">Майотта</option>
+            <option value="mx">Мексика</option>
+            <option value="fm">Мікронезія</option>
+            <option value="md">Молдова</option>
+            <option value="mc">Монако</option>
+            <option value="mn">Монголія</option>
+            <option value="me">Чорногорія</option>
+            <option value="ms">Монтсеррат</option>
+            <option value="ma">Марокко</option>
+            <option value="mz">Мозамбік</option>
+            <option value="mm">М’янма</option>
+            <option value="na">Намібія</option>
+            <option value="nr">Науру</option>
+            <option value="np">Непал</option>
+            <option value="nl">Нідерланди</option>
+            <option value="nc">Нова Каледонія</option>
+            <option value="nz">Нова Зеландія</option>
+            <option value="ni">Нікарагуа</option>
+            <option value="ne">Нігер</option>
+            <option value="ng">Нігерія</option>
+            <option value="nu">Ніуе</option>
+            <option value="nf">Острів Норфолк</option>
+            <option value="mp">Північні Маріанські Острови</option>
+            <option value="no">Норвегія</option>
+            <option value="om">Оман</option>
+            <option value="pk">Пакистан</option>
+            <option value="pw">Палау</option>
+            <option value="ps">Палестина</option>
+            <option value="pa">Панама</option>
+            <option value="pg">Папуа-Нова Гвінея</option>
+            <option value="py">Парагвай</option>
+            <option value="pe">Перу</option>
+            <option value="ph">Філіппіни</option>
+            <option value="pn">Піткерн</option>
+            <option value="pl">Польща</option>
+            <option value="pt">Португалія</option>
+            <option value="pr">Пуерто-Рико</option>
+            <option value="qa">Катар</option>
+            <option value="re">Реюньйон</option>
+            <option value="ro">Румунія</option>
+            <option value="ru">Росія</option>
+            <option value="rw">Руанда</option>
+            <option value="bl">Сен-Бартельмі</option>
+            <option value="sh">Острів Святої Єлени</option>
+            <option value="kn">Сент-Кітс і Невіс</option>
+            <option value="lc">Сент-Люсія</option>
+            <option value="mf">Сен-Мартен</option>
+            <option value="pm">Сен-П’єр і Мікелон</option>
+            <option value="vc">Сент-Вінсент і Гренадіни</option>
+            <option value="ws">Самоа</option>
+            <option value="sm">Сан-Марино</option>
+            <option value="st">Сан-Томе і Принсіпі</option>
+            <option value="sa">Саудівська Аравія</option>
+            <option value="sn">Сенегал</option>
+            <option value="rs">Сербія</option>
+            <option value="sc">Сейшели</option>
+            <option value="sl">Сьєрра-Леоне</option>
+            <option value="sg">Сінгапур</option>
+            <option value="sx">Сінт-Мартен</option>
+            <option value="sk">Словаччина</option>
+            <option value="si">Словенія</option>
+            <option value="sb">Соломонові Острови</option>
+            <option value="so">Сомалі</option>
+            <option value="za">Південна Африка</option>
+            <option value="gs">Південна Джорджія та Південні Сандвічеві Острови</option>
+            <option value="ss">Південний Судан</option>
+            <option value="es">Іспанія</option>
+            <option value="lk">Шрі-Ланка</option>
+            <option value="sd">Судан</option>
+            <option value="sr">Сурінам</option>
+            <option value="sj">Шпіцберген і Ян-Майен</option>
+            <option value="sz">Есватіні</option>
+            <option value="se">Швеція</option>
+            <option value="ch">Швейцарія</option>
+            <option value="sy">Сирія</option>
+            <option value="tw">Тайвань</option>
+            <option value="tj">Таджикистан</option>
+            <option value="tz">Танзанія</option>
+            <option value="th">Таїланд</option>
+            <option value="tl">Тимор-Лешті</option>
+            <option value="tg">Того</option>
+            <option value="tk">Токелау</option>
+            <option value="to">Тонга</option>
+            <option value="tt">Тринідад і Тобаго</option>
+            <option value="tn">Туніс</option>
+            <option value="tr">Туреччина</option>
+            <option value="tm">Туркменістан</option>
+            <option value="tc">Туркс і Кайкос</option>
+            <option value="tv">Тувалу</option>
+            <option value="ug">Уганда</option>
+            <option value="ua">Україна</option>
+            <option value="ae">Об'єднані Арабські Емірати</option>
+            <option value="gb">Велика Британія</option>
+            <option value="us">США</option>
+            <option value="uy">Уругвай</option>
+            <option value="uz">Узбекистан</option>
+            <option value="vu">Вануату</option>
+            <option value="ve">Венесуела</option>
+            <option value="vn">В’єтнам</option>
+            <option value="vg">Британські Віргінські Острови</option>
+            <option value="vi">Американські Віргінські Острови</option>
+            <option value="wf">Волліс і Футуна</option>
+            <option value="eh">Західна Сахара</option>
+            <option value="ye">Ємен</option>
+            <option value="zm">Замбія</option>
+            <option value="zw">Зімбабве</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="freelancerSkills" data-i18n="skillsLabel">Skills Category</label>
+          <select id="freelancerSkills" name="freelancerSkills" required>
+            <option value="" disabled selected data-i18n="selectSkills">Select Skills</option>
+            <option value="programming" data-i18n="skillProgramming">Programming</option>
+            <option value="design" data-i18n="skillDesign">Design</option>
+            <option value="marketing" data-i18n="skillMarketing">Marketing</option>
+            <option value="writing" data-i18n="skillWriting">Writing</option>
+            <option value="video" data-i18n="skillVideo">Video</option>
+            <option value="audio" data-i18n="skillAudio">Audio</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <button type="submit" data-i18n="submitButton">Submit Application</button>
+        </div>
+      </form>
+    </div>
+    <div id="register" class="tab-content">
+      <form id="registerForm" onsubmit="handleRegister(event)">
+        <div class="form-group">
+          <label for="username" data-i18n="usernameLabel">Username</label>
+          <input type="text" id="username" name="username" required>
+        </div>
+        <div class="form-group">
+          <label for="phone" data-i18n="phoneLabel">Phone Number</label>
+          <input type="tel" id="phone" name="phone" required>
+        </div>
+        <div class="form-group">
+          <label for="gender" data-i18n="genderLabel">Gender</label>
+          <select id="gender" name="gender" required>
+            <option value="" disabled selected data-i18n="selectGender">Select Gender</option>
+            <option value="male" data-i18n="genderMale">Male</option>
+            <option value="female" data-i18n="genderFemale">Female</option>
+            <option value="other" data-i18n="genderOther">Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="country" data-i18n="countryLabel">Country</label>
+          <select id="country" name="country" required>
+            <option value="" disabled selected data-i18n="selectCountry">Select Country</option>
+            <option value="af">Афганістан</option>
+            <option value="al">Албанія</option>
+            <option value="dz">Алжир</option>
+            <option value="as">Американське Самоа</option>
+            <option value="ad">Андорра</option>
+            <option value="ao">Ангола</option>
+            <option value="ai">Ангуїлла</option>
+            <option value="aq">Антарктида</option>
+            <option value="ag">Антигуа і Барбуда</option>
+            <option value="ar">Аргентина</option>
+            <option value="am">Вірменія</option>
+            <option value="aw">Аруба</option>
+            <option value="au">Австралія</option>
+            <option value="at">Австрія</option>
+            <option value="az">Азербайджан</option>
+            <option value="bs">Багамські Острови</option>
+            <option value="bh">Бахрейн</option>
+            <option value="bd">Бангладеш</option>
+            <option value="bb">Барбадос</option>
+            <option value="by">Білорусь</option>
+            <option value="be">Бельгія</option>
+            <option value="bz">Беліз</option>
+            <option value="bj">Бенін</option>
+            <option value="bm">Бермудські Острови</option>
+            <option value="bt">Бутан</option>
+            <option value="bo">Болівія</option>
+            <option value="ba">Боснія і Герцеговина</option>
+            <option value="bw">Ботсвана</option>
+            <option value="bv">Острів Буве</option>
+            <option value="br">Бразилія</option>
+            <option value="io">Британська Територія в Індійському Океані</option>
+            <option value="bn">Бруней</option>
+            <option value="bg">Болгарія</option>
+            <option value="bf">Буркіна-Фасо</option>
+            <option value="bi">Бурунді</option>
+            <option value="kh">Камбоджа</option>
+            <option value="cm">Камерун</option>
+            <option value="ca">Канада</option>
+            <option value="cv">Кабо-Верде</option>
+            <option value="ky">Кайманові Острови</option>
+            <option value="cf">Центральноафриканська Республіка</option>
+            <option value="td">Чад</option>
+            <option value="cl">Чилі</option>
+            <option value="cn">Китай</option>
+            <option value="cx">Острів Різдва</option>
+            <option value="cc">Кокосові (Кілінг) Острови</option>
+            <option value="co">Колумбія</option>
+            <option value="km">Комори</option>
+            <option value="cg">Конго</option>
+            <option value="cd">Демократична Республіка Конго</option>
+            <option value="ck">Острови Кука</option>
+            <option value="cr">Коста-Рика</option>
+            <option value="ci">Кот-д'Івуар</option>
+            <option value="hr">Хорватія</option>
+            <option value="cu">Куба</option>
+            <option value="cy">Кіпр</option>
+            <option value="cz">Чехія</option>
+            <option value="dk">Данія</option>
+            <option value="dj">Джибуті</option>
+            <option value="dm">Домініка</option>
+            <option value="do">Домініканська Республіка</option>
+            <option value="ec">Еквадор</option>
+            <option value="eg">Єгипет</option>
+            <option value="sv">Сальвадор</option>
+            <option value="gq">Екваторіальна Гвінея</option>
+            <option value="er">Еритрея</option>
+            <option value="ee">Естонія</option>
+            <option value="et">Ефіопія</option>
+            <option value="fk">Фолклендські Острови</option>
+            <option value="fo">Фарерські Острови</option>
+            <option value="fj">Фіджі</option>
+            <option value="fi">Фінляндія</option>
+            <option value="fr">Франція</option>
+            <option value="gf">Французька Гвіана</option>
+            <option value="pf">Французька Полінезія</option>
+            <option value="tf">Французькі Південні Території</option>
+            <option value="ga">Габон</option>
+            <option value="gm">Гамбія</option>
+            <option value="ge">Грузія</option>
+            <option value="de">Німеччина</option>
+            <option value="gh">Гана</option>
+            <option value="gi">Гібралтар</option>
+            <option value="gr">Греція</option>
+            <option value="gl">Гренландія</option>
+            <option value="gd">Гренада</option>
+            <option value="gp">Гваделупа</option>
+            <option value="gu">Гуам</option>
+            <option value="gt">Гватемала</option>
+            <option value="gg">Гернсі</option>
+            <option value="gn">Гвінея</option>
+            <option value="gw">Гвінея-Бісау</option>
+            <option value="gy">Гайана</option>
+            <option value="ht">Гаїті</option>
+            <option value="hm">Острови Херд і Макдональд</option>
+            <option value="va">Ватикан</option>
+            <option value="hn">Гондурас</option>
+            <option value="hk">Гонконг</option>
+            <option value="hu">Угорщина</option>
+            <option value="is">Ісландія</option>
+            <option value="in">Індія</option>
+            <option value="id">Індонезія</option>
+            <option value="ir">Іран</option>
+            <option value="iq">Ірак</option>
+            <option value="ie">Ірландія</option>
+            <option value="im">Острів Мен</option>
+            <option value="il">Ізраїль</option>
+            <option value="it">Італія</option>
+            <option value="jm">Ямайка</option>
+            <option value="jp">Японія</option>
+            <option value="je">Джерсі</option>
+            <option value="jo">Йорданія</option>
+            <option value="kz">Казахстан</option>
+            <option value="ke">Кенія</option>
+            <option value="ki">Кірибаті</option>
+            <option value="kp">Північна Корея</option>
+            <option value="kr">Південна Корея</option>
+            <option value="kw">Кувейт</option>
+            <option value="kg">Киргизстан</option>
+            <option value="la">Лаос</option>
+            <option value="lv">Латвія</option>
+            <option value="lb">Ліван</option>
+            <option value="ls">Лесото</option>
+            <option value="lr">Ліберія</option>
+            <option value="ly">Лівія</option>
+            <option value="li">Ліхтенштейн</option>
+            <option value="lt">Литва</option>
+            <option value="lu">Люксембург</option>
+            <option value="mo">Макао</option>
+            <option value="mk">Північна Македонія</option>
+            <option value="mg">Мадагаскар</option>
+            <option value="mw">Малаві</option>
+            <option value="my">Малайзія</option>
+            <option value="mv">Мальдіви</option>
+            <option value="ml">Малі</option>
+            <option value="mt">Мальта</option>
+            <option value="mh">Маршаллові Острови</option>
+            <option value="mq">Мартиніка</option>
+            <option value="mr">Мавританія</option>
+            <option value="mu">Маврикій</option>
+            <option value="yt">Майотта</option>
+            <option value="mx">Мексика</option>
+            <option value="fm">Мікронезія</option>
+            <option value="md">Молдова</option>
+            <option value="mc">Монако</option>
+            <option value="mn">Монголія</option>
+            <option value="me">Чорногорія</option>
+            <option value="ms">Монтсеррат</option>
+            <option value="ma">Марокко</option>
+            <option value="mz">Мозамбік</option>
+            <option value="mm">М’янма</option>
+            <option value="na">Намібія</option>
+            <option value="nr">Науру</option>
+            <option value="np">Непал</option>
+            <option value="nl">Нідерланди</option>
+            <option value="nc">Нова Каледонія</option>
+            <option value="nz">Нова Зеландія</option>
+            <option value="ni">Нікарагуа</option>
+            <option value="ne">Нігер</option>
+            <option value="ng">Нігерія</option>
+            <option value="nu">Ніуе</option>
+            <option value="nf">Острів Норфолк</option>
+            <option value="mp">Північні Маріанські Острови</option>
+            <option value="no">Норвегія</option>
+            <option value="om">Оман</option>
+            <option value="pk">Пакистан</option>
+            <option value="pw">Палау</option>
+            <option value="ps">Палестина</option>
+            <option value="pa">Панама</option>
+            <option value="pg">Папуа-Нова Гвінея</option>
+            <option value="py">Парагвай</option>
+            <option value="pe">Перу</option>
+            <option value="ph">Філіппіни</option>
+            <option value="pn">Піткерн</option>
+            <option value="pl">Польща</option>
+            <option value="pt">Португалія</option>
+            <option value="pr">Пуерто-Рико</option>
+            <option value="qa">Катар</option>
+            <option value="re">Реюньйон</option>
+            <option value="ro">Румунія</option>
+            <option value="ru">Росія</option>
+            <option value="rw">Руанда</option>
+            <option value="bl">Сен-Бартельмі</option>
+            <option value="sh">Острів Святої Єлени</option>
+            <option value="kn">Сент-Кітс і Невіс</option>
+            <option value="lc">Сент-Люсія</option>
+            <option value="mf">Сен-Мартен</option>
+            <option value="pm">Сен-П’єр і Мікелон</option>
+            <option value="vc">Сент-Вінсент і Гренадіни</option>
+            <option value="ws">Самоа</option>
+            <option value="sm">Сан-Марино</option>
+            <option value="st">Сан-Томе і Принсіпі</option>
+            <option value="sa">Саудівська Аравія</option>
+            <option value="sn">Сенегал</option>
+            <option value="rs">Сербія</option>
+            <option value="sc">Сейшели</option>
+            <option value="sl">Сьєрра-Леоне</option>
+            <option value="sg">Сінгапур</option>
+            <option value="sx">Сінт-Мартен</option>
+            <option value="sk">Словаччина</option>
+            <option value="si">Словенія</option>
+            <option value="sb">Соломонові Острови</option>
+            <option value="so">Сомалі</option>
+            <option value="za">Південна Африка</option>
+            <option value="gs">Південна Джорджія та Південні Сандвічеві Острови</option>
+            <option value="ss">Південний Судан</option>
+            <option value="es">Іспанія</option>
+            <option value="lk">Шрі-Ланка</option>
+            <option value="sd">Судан</option>
+            <option value="sr">Сурінам</option>
+            <option value="sj">Шпіцберген і Ян-Майен</option>
+            <option value="sz">Есватіні</option>
+            <option value="se">Швеція</option>
+            <option value="ch">Швейцарія</option>
+            <option value="sy">Сирія</option>
+            <option value="tw">Тайвань</option>
+            <option value="tj">Таджикистан</option>
+            <option value="tz">Танзанія</option>
+            <option value="th">Таїланд</option>
+            <option value="tl">Тимор-Лешті</option>
+            <option value="tg">Того</option>
+            <option value="tk">Токелау</option>
+            <option value="to">Тонга</option>
+            <option value="tt">Тринідад і Тобаго</option>
+            <option value="tn">Туніс</option>
+            <option value="tr">Туреччина</option>
+            <option value="tm">Туркменістан</option>
+            <option value="tc">Туркс і Кайкос</option>
+            <option value="tv">Тувалу</option>
+            <option value="ug">Уганда</option>
+            <option value="ua">Україна</option>
+            <option value="ae">Об'єднані Арабські Емірати</option>
+            <option value="gb">Велика Британія</option>
+            <option value="us">США</option>
+            <option value="uy">Уругвай</option>
+            <option value="uz">Узбекистан</option>
+            <option value="vu">Вануату</option>
+            <option value="ve">Венесуела</option>
+            <option value="vn">В’єтнам</option>
+            <option value="vg">Британські Віргінські Острови</option>
+            <option value="vi">Американські Віргінські Острови</option>
+            <option value="wf">Волліс і Футуна</option>
+            <option value="eh">Західна Сахара</option>
+            <option value="ye">Ємен</option>
+            <option value="zm">Замбія</option>
+            <option value="zw">Зімбабве</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="password" data-i18n="passwordLabel">Password</label>
+          <input type="password" id="password" name="password" required>
+        </div>
+        <div class="form-group">
+          <label for="confirmPassword" data-i18n="confirmPasswordLabel">Confirm Password</label>
+          <input type="password" id="confirmPassword" name="confirmPassword" required>
+        </div>
+        <div class="form-group">
+          <button type="submit" data-i18n="registerButton">Register</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-links">
+        <a href="#about" data-i18n="footerAbout">About Us</a>
+        <a href="#terms" data-i18n="footerTerms">Terms of Use</a>
+        <a href="#support" data-i18n="footerSupport">Support</a>
+        <a href="#privacy" data-i18n="footerPrivacy">Privacy Policy</a>
+      </div>
+      <div class="social-links">
+        <a href="#">Facebook</a>
+        <a href="#">Twitter</a>
+        <a href="#">LinkedIn</a>
+        <a href="#">Instagram</a>
+      </div>
+    </div>
+    <p data-i18n="footerCopyright">2025 FreelancePro. All rights reserved.</p>
+  </footer>
+</body>
+<script src="js/main.js"></script>
+<script src="js/becomefreelancer.js"></script>
+
+</html>
